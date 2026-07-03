@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ottica Vedere — Foggia</title>
+  <meta name="description" content="Ottica Vedere a Foggia — 35 anni di esperienza nella cura della vista e dell'udito. Via Vittime Civili 40, tel. 0881 714001.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --deep:      #05090F;
+      --navy:      #09101F;
+      --navy-mid:  #101926;
+      --navy-lit:  #1A2B4A;
+      --gold:      #C4975A;
+      --gold-hi:   #DDB070;
+      --gold-dim:  rgba(196,151,90,0.15);
+      --white:     #FAFAF8;
+      --muted:     rgba(250,250,248,0.52);
+      --text:      #0A1020;
+      --text-mid:  rgba(10,16,32,0.62);
+      --display:   'Cormorant Garamond', Georgia, serif;
+      --sans:      'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ──────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.375rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.5s ease, box-shadow 0.5s ease;
+    }
+    .nav.is-scrolled {
+      background: var(--deep);
+      box-shadow: 0 1px 0 var(--gold-dim);
+    }
+    .nav__logo {
+      font-family: var(--display); font-size: 1.5rem; font-weight: 600;
+      color: var(--white); text-decoration: none; letter-spacing: 0.02em;
+    }
+    .nav__logo span { color: var(--gold); }
+    .nav__links { list-style: none; display: flex; align-items: center; gap: 2.5rem; }
+    .nav__links a {
+      color: rgba(250,250,248,0.6); text-decoration: none;
+      font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav__links a:hover { color: var(--gold); }
+    .nav__tel {
+      border: 1px solid var(--gold) !important; color: var(--gold) !important;
+      padding: 0.5rem 1.25rem !important; font-size: 0.78rem !important;
+      letter-spacing: 0.1em !important;
+      transition: background 0.2s, color 0.2s !important;
+    }
+    .nav__tel:hover { background: var(--gold) !important; color: var(--deep) !important; }
+    .nav__mobile-tel { display: none; color: var(--gold); text-decoration: none; font-size: 0.875rem; font-weight: 500; }
+
+    /* ─── HERO ─────────────────────────── */
+    .hero {
+      --lx: 50%; --ly: 50%;
+      position: relative;
+      min-height: 100svh;
+      background: var(--deep);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      padding: 9rem 2rem 6rem;
+    }
+
+    /* Lens spotlight — follows cursor */
+    .hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: radial-gradient(
+        ellipse 520px 420px at var(--lx) var(--ly),
+        rgba(196,151,90,0.11) 0%,
+        rgba(196,151,90,0.03) 45%,
+        transparent 80%
+      );
+    }
+    /* Edge vignette */
+    .hero::after {
+      content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, rgba(5,9,15,0.75) 100%);
+    }
+
+    /* Star-dust canvas */
+    .hero__stars { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+    /* Concentric rings — the optical signature */
+    .hero__rings {
+      position: absolute; z-index: 2; pointer-events: none;
+      width: min(90vmin, 900px); height: min(90vmin, 900px);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      animation: rings-drift 25s ease-in-out infinite;
+    }
+    @keyframes rings-drift {
+      0%,100% { transform: translate(-50%, -50%) scale(1); }
+      50%      { transform: translate(-50%, -50%) scale(1.025); }
+    }
+
+    /* Ghost "35" */
+    .hero__ghost {
+      position: absolute; z-index: 2; pointer-events: none; user-select: none;
+      font-family: var(--display); font-style: italic; font-weight: 600;
+      font-size: clamp(18rem, 42vw, 38rem);
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(196,151,90,0.13);
+      right: -5vw; top: 50%; transform: translateY(-50%);
+      line-height: 1;
+      animation: ghost-breathe 22s ease-in-out infinite;
+    }
+    @keyframes ghost-breathe {
+      0%,100% { transform: translateY(-50%); opacity: 1; }
+      50%      { transform: translateY(-51.5%); opacity: 0.7; }
+    }
+
+    /* Hero content */
+    .hero__content {
+      position: relative; z-index: 3;
+      max-width: 960px; width: 100%;
+    }
+
+    /* Load blur-to-focus: the optician metaphor made literal */
+    .blur-in {
+      opacity: 0; filter: blur(16px); transform: translateY(14px);
+      will-change: filter, opacity, transform;
+      transition: opacity 1.1s cubic-bezier(0.25,0.46,0.45,0.94),
+                  filter 1.1s cubic-bezier(0.25,0.46,0.45,0.94),
+                  transform 1.1s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .blur-in.is-in { opacity: 1; filter: blur(0); transform: none; }
+    .bi-d1 { transition-delay: 0.15s; }
+    .bi-d2 { transition-delay: 0.35s; }
+    .bi-d3 { transition-delay: 0.58s; }
+    .bi-d4 { transition-delay: 0.78s; }
+
+    .hero__eyebrow {
+      display: flex; align-items: center; gap: 0.875rem;
+      font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); font-weight: 400; margin-bottom: 2rem;
+    }
+    .hero__eyebrow::before, .hero__eyebrow::after {
+      content: ''; display: block; height: 1px; width: 30px;
+      background: var(--gold); opacity: 0.4;
+    }
+
+    /* Split title — "Vedere" left, "bene." right. Two eyes, one vision. */
+    .hero__title {
+      font-family: var(--display); font-weight: 500;
+      font-size: clamp(4.25rem, 11vw, 10.5rem);
+      line-height: 0.88; letter-spacing: -0.025em;
+      color: var(--white); margin-bottom: 2.25rem;
+    }
+    .hero__line { display: block; }
+    .hero__line--l { text-align: left; }
+    .hero__line--r { text-align: right; }
+    .hero__title em { font-style: italic; color: var(--gold); }
+
+    .hero__sub {
+      font-size: clamp(0.9375rem, 1.3vw, 1rem); color: var(--muted);
+      line-height: 1.8; max-width: 500px; margin: 0 auto 2.75rem;
+      font-weight: 300; text-align: center;
+    }
+    .hero__actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-gold {
+      display: inline-block; background: var(--gold); color: var(--deep);
+      padding: 1rem 2.25rem; font-family: var(--sans);
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.22s;
+    }
+    .btn-gold:hover { background: var(--gold-hi); }
+
+    .btn-ghost-light {
+      display: inline-block; background: transparent;
+      color: rgba(250,250,248,0.68); padding: 1rem 2.25rem;
+      font-family: var(--sans); font-size: 0.8rem; font-weight: 400;
+      letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
+      border: 1px solid rgba(250,250,248,0.2);
+      transition: border-color 0.22s, color 0.22s;
+    }
+    .btn-ghost-light:hover { border-color: rgba(250,250,248,0.5); color: var(--white); }
+
+    /* ─── MARQUEE ───────────────────── */
+    .marquee {
+      background: var(--navy-mid);
+      border-top: 1px solid var(--gold-dim);
+      border-bottom: 1px solid var(--gold-dim);
+      overflow: hidden; padding: 1rem 0;
+    }
+    .marquee__track {
+      display: flex; white-space: nowrap; width: max-content;
+      animation: marquee-run 35s linear infinite;
+    }
+    .marquee__track:hover { animation-play-state: paused; }
+    @keyframes marquee-run {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee__item {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(250,250,248,0.38); font-weight: 300; padding: 0 2rem;
+    }
+    .marquee__dot { color: var(--gold); opacity: 0.45; padding: 0 0.5rem; }
+
+    /* ─── STATS ─────────────────────── */
+    .stats {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      background: var(--navy-mid);
+    }
+    .stat {
+      padding: 3rem 2rem; text-align: center;
+      border-right: 1px solid rgba(196,151,90,0.1);
+    }
+    .stat:last-child { border-right: none; }
+    .stat__num {
+      font-family: var(--display);
+      font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 600;
+      color: var(--gold); line-height: 1; margin-bottom: 0.5rem;
+    }
+    .stat__lbl {
+      font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(250,250,248,0.4); font-weight: 300;
+    }
+
+    /* ─── SHARED LABELS / HEADINGS ──── */
+    .lbl {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 400; margin-bottom: 1.25rem;
+    }
+    .hdg-light {
+      font-family: var(--display);
+      font-size: clamp(2rem, 3.8vw, 3.5rem); font-weight: 500;
+      color: var(--white); line-height: 1.14;
+    }
+    .hdg-dark {
+      font-family: var(--display);
+      font-size: clamp(2rem, 3.8vw, 3.5rem); font-weight: 500;
+      color: var(--text); line-height: 1.14;
+    }
+
+    /* ─── ABOUT ─────────────────────── */
+    .about {
+      padding: clamp(5rem, 10vw, 10rem) 2.5rem;
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .about__heading {
+      font-family: var(--display);
+      font-size: clamp(2.25rem, 3.5vw, 3.25rem); font-weight: 500;
+      color: var(--text); line-height: 1.18; margin-bottom: 1.875rem;
+    }
+    .about__body {
+      font-size: 0.9375rem; line-height: 1.87;
+      color: var(--text-mid); font-weight: 300;
+    }
+    .about__body p + p { margin-top: 1.125rem; }
+    .about__quote {
+      font-family: var(--display); font-style: italic; font-weight: 400;
+      font-size: clamp(1.875rem, 2.8vw, 2.625rem);
+      color: var(--text); line-height: 1.32;
+      border-left: 2px solid var(--gold); padding-left: 2rem;
+    }
+    .about__cite {
+      display: block; margin-top: 1.5rem; padding-left: 2rem;
+      font-style: normal; font-size: 0.78rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(10,16,32,0.38);
+    }
+
+    /* ─── SERVICES ──────────────────── */
+    .services {
+      background: var(--deep);
+      padding: clamp(5rem, 10vw, 10rem) 2.5rem;
+    }
+    .services__inner { max-width: 1240px; margin: 0 auto; }
+    .services__hd { margin-bottom: 3.5rem; }
+
+    .svc-list { border-top: 1px solid rgba(196,151,90,0.14); }
+    .svc-row {
+      display: grid; grid-template-columns: 4fr 6fr auto;
+      align-items: start; gap: 3rem;
+      padding: 2.75rem 0;
+      border-bottom: 1px solid rgba(196,151,90,0.11);
+      cursor: default;
+    }
+    .svc-row__name {
+      font-family: var(--display);
+      font-size: clamp(1.75rem, 2.6vw, 2.625rem); font-weight: 500;
+      color: var(--white); line-height: 1.1;
+      transition: transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94), color 0.38s;
+      padding-top: 0.25rem;
+    }
+    .svc-row:hover .svc-row__name { transform: translateX(10px); color: var(--gold); }
+    .svc-row__desc {
+      font-size: 0.9rem; color: rgba(250,250,248,0.5);
+      line-height: 1.74; font-weight: 300;
+    }
+    .svc-row__tag {
+      font-size: 0.68rem; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(196,151,90,0.28);
+      padding: 0.375rem 0.875rem; white-space: nowrap; margin-top: 0.375rem;
+    }
+
+    /* ─── REVIEWS ───────────────────── */
+    .reviews {
+      background: var(--navy);
+      padding: clamp(5rem, 10vw, 10rem) 2.5rem;
+    }
+    .reviews__inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .reviews__hd { margin-bottom: 4rem; }
+
+    .review-main { margin-bottom: 4.5rem; }
+    .review-main__text {
+      font-family: var(--display); font-style: italic; font-weight: 400;
+      font-size: clamp(1.875rem, 3.2vw, 2.875rem);
+      color: var(--white); line-height: 1.32; margin-bottom: 2rem;
+    }
+    .review-main__text::before { content: '\201C'; color: var(--gold); }
+    .review-main__text::after  { content: '\201D'; color: var(--gold); }
+    .review-main__byline {
+      display: flex; align-items: center; justify-content: center; gap: 1.5rem;
+    }
+    .review-main__byline::before, .review-main__byline::after {
+      content: ''; height: 1px; width: 50px; background: rgba(196,151,90,0.22);
+    }
+    .review-main__stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.12em; }
+    .review-main__name {
+      font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(250,250,248,0.45);
+    }
+
+    .review-second {
+      font-family: var(--display); font-style: italic; font-weight: 400;
+      font-size: clamp(1.25rem, 1.9vw, 1.625rem);
+      color: rgba(250,250,248,0.55); line-height: 1.45;
+      padding-top: 3.5rem;
+      border-top: 1px solid rgba(196,151,90,0.1);
+    }
+    .review-second__by {
+      display: block; margin-top: 1.125rem;
+      font-style: normal; font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(250,250,248,0.28);
+    }
+
+    /* ─── CONTACT ───────────────────── */
+    .contact-wrap {
+      padding: clamp(5rem, 10vw, 10rem) 2.5rem;
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: start;
+    }
+    .contact-col__ttl {
+      font-family: var(--display);
+      font-size: clamp(1.75rem, 2.8vw, 2.5rem); font-weight: 500;
+      color: var(--text); line-height: 1.2; margin-bottom: 2rem;
+    }
+
+    .hours { width: 100%; border-collapse: collapse; }
+    .hours tr { border-bottom: 1px solid rgba(10,16,32,0.08); }
+    .hours td { padding: 0.8125rem 0; font-size: 0.9375rem; color: var(--text-mid); }
+    .hours td:first-child { font-weight: 500; color: var(--text); }
+    .hours td:last-child { text-align: right; font-variant-numeric: tabular-nums; font-weight: 300; }
+    .hours .closed td { color: rgba(10,16,32,0.28); font-style: italic; }
+
+    .cinfo { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.25rem; }
+    .ci { display: flex; align-items: flex-start; gap: 0.875rem; }
+    .ci__icon { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; margin-top: 3px; }
+    .ci__text { font-size: 0.9375rem; color: var(--text-mid); line-height: 1.55; font-weight: 300; }
+    .ci__text strong { display: block; color: var(--text); font-weight: 500; font-size: 1rem; }
+    .ci__text a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .ci__text a:hover { color: var(--text); }
+
+    .btn-dark {
+      display: inline-block; padding: 0.9375rem 1.875rem;
+      border: 1px solid rgba(10,16,32,0.25); color: var(--text);
+      font-family: var(--sans); font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.09em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.22s, color 0.22s, border-color 0.22s;
+    }
+    .btn-dark:hover { background: var(--text); color: var(--white); border-color: var(--text); }
+
+    /* ─── FOOTER ────────────────────── */
+    footer {
+      background: var(--deep);
+      border-top: 1px solid var(--gold-dim);
+      padding: 3rem 2.5rem;
+    }
+    .footer__in {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer__logo { font-family: var(--display); font-size: 1.25rem; font-weight: 600; color: var(--white); }
+    .footer__logo span { color: var(--gold); }
+    .footer__copy { font-size: 0.78rem; color: rgba(250,250,248,0.28); }
+    .footer__addr { font-size: 0.78rem; color: rgba(250,250,248,0.38); text-align: right; line-height: 1.65; font-weight: 300; }
+    .footer__addr a { color: var(--gold); text-decoration: none; }
+
+    /* ─── SCROLL REVEALS ────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.78s ease, transform 0.78s ease;
+    }
+    .reveal.is-vis { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.32s; }
+
+    /* ─── RESPONSIVE ────────────────── */
+    @media (max-width: 960px) {
+      .about { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 3.5rem; }
+      .svc-row { grid-template-columns: 1fr 1fr; }
+      .svc-row__tag { grid-column: 1 / -1; justify-self: start; }
+    }
+    @media (max-width: 640px) {
+      .nav__links { display: none; }
+      .nav__mobile-tel { display: block; }
+      .nav { padding: 1.125rem 1.25rem; }
+      .hero__ghost { font-size: 60vw; right: -10vw; }
+      .svc-row { grid-template-columns: 1fr; gap: 0.875rem; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid rgba(196,151,90,0.1); }
+      .stat:last-child { border-bottom: none; }
+      .footer__in { flex-direction: column; align-items: flex-start; }
+      .footer__addr { text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .blur-in, .reveal { opacity: 1 !important; filter: none !important; transform: none !important; transition: none !important; }
+      .hero__ghost, .hero__rings { animation: none; }
+      .marquee__track { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="js-nav">
+  <a href="#" class="nav__logo">Ottica <span>Vedere</span></a>
+  <ul class="nav__links">
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#chi-siamo">Chi siamo</a></li>
+    <li><a href="#recensioni">Recensioni</a></li>
+    <li><a href="#contatti">Orari</a></li>
+    <li><a href="tel:0881714001" class="nav__tel">0881 714001</a></li>
+  </ul>
+  <a href="tel:0881714001" class="nav__mobile-tel">0881 714001</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="js-hero">
+  <canvas class="hero__stars" id="js-stars"></canvas>
+
+  <!-- Optical rings -->
+  <svg class="hero__rings" viewBox="0 0 900 900" fill="none" aria-hidden="true">
+    <circle cx="450" cy="450" r="432" stroke="rgba(196,151,90,0.05)" stroke-width="1"/>
+    <circle cx="450" cy="450" r="356" stroke="rgba(196,151,90,0.10)" stroke-width="1"/>
+    <circle cx="450" cy="450" r="280" stroke="rgba(196,151,90,0.17)" stroke-width="1.5"/>
+    <circle cx="450" cy="450" r="204" stroke="rgba(196,151,90,0.09)" stroke-width="1"/>
+    <circle cx="450" cy="450" r="128" stroke="rgba(196,151,90,0.05)" stroke-width="1"/>
+  </svg>
+
+  <div class="hero__ghost" aria-hidden="true">35</div>
+
+  <div class="hero__content">
+    <p class="hero__eyebrow blur-in bi-d1">35 anni di esperienza&nbsp;·&nbsp;Foggia</p>
+
+    <h1 class="hero__title">
+      <span class="hero__line hero__line--l blur-in bi-d2">Vedere</span>
+      <span class="hero__line hero__line--r blur-in bi-d3"><em>bene.</em></span>
+    </h1>
+
+    <p class="hero__sub blur-in bi-d3">
+      Da oltre trent'anni Giuliano guida l'ottica di riferimento a Foggia — con la competenza, la cura e la fiducia che si costruiscono nel tempo.
+    </p>
+
+    <div class="hero__actions blur-in bi-d4">
+      <a href="tel:0881714001" class="btn-gold">Chiamaci: 0881 714001</a>
+      <a href="#servizi" class="btn-ghost-light">Scopri i servizi</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span class="marquee__item">Ottica Vedere</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Foggia</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">35 anni di esperienza</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Occhiali da Vista</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Occhiali da Sole</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Ray-Ban</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Meta</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Analisi Visiva</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Controllo Uditivo</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Via Vittime Civili 40</span><span class="marquee__dot">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee__item">Ottica Vedere</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Foggia</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">35 anni di esperienza</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Occhiali da Vista</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Occhiali da Sole</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Ray-Ban</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Meta</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Analisi Visiva</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Controllo Uditivo</span><span class="marquee__dot">·</span>
+    <span class="marquee__item">Via Vittime Civili 40</span><span class="marquee__dot">·</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat__num">35</div>
+    <div class="stat__lbl">Anni di esperienza</div>
+  </div>
+  <div class="stat">
+    <div class="stat__num">5&#9733;</div>
+    <div class="stat__lbl">Valutazione Google</div>
+  </div>
+  <div class="stat">
+    <div class="stat__num">92%</div>
+    <div class="stat__lbl">Valutazioni positive</div>
+  </div>
+</div>
+
+<!-- CHI SIAMO -->
+<section id="chi-siamo">
+  <div class="about">
+    <div class="reveal">
+      <p class="lbl">Chi siamo</p>
+      <h2 class="about__heading">Un'ottica di fiducia nel cuore di Foggia</h2>
+      <div class="about__body">
+        <p>Ottica Vedere è nata dalla passione di Giuliano per l'ottica e, in trent'anni, è diventata una delle realtà più affermate del settore nella provincia di Foggia.</p>
+        <p>Lo trovi in Via Vittime Civili — un negozio luminoso e accogliente dove ogni cliente riceve ascolto e soluzioni concrete: dalla scelta degli occhiali giusti al controllo della vista, fino allo screening uditivo, oggi anche a domicilio.</p>
+        <p>La specializzazione maturata nel tempo permette di offrire qualcosa che va oltre la vendita: è consulenza, è continuità, è il rapporto che si costruisce con chi torna da te da anni.</p>
+      </div>
+    </div>
+    <div class="reveal reveal-d2">
+      <blockquote class="about__quote">
+        "Grande professionalità, gentilezza e competenza. Ambiente confortevole e luminoso. Consiglio vivamente."
+      </blockquote>
+      <cite class="about__cite">Arturo Pagliara &mdash; Cliente</cite>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section class="services" id="servizi">
+  <div class="services__inner">
+    <div class="services__hd reveal">
+      <p class="lbl">I nostri servizi</p>
+      <h2 class="hdg-light">Visione e udito,<br>sotto lo stesso tetto</h2>
+    </div>
+
+    <div class="svc-list">
+
+      <div class="svc-row reveal">
+        <div class="svc-row__name">Occhiali da Vista</div>
+        <div class="svc-row__desc">Ampia scelta di montature per ogni stile e correzione. Lenti di alta qualità, dalle semplici alle progressive. Esame visivo personalizzato incluso per i nuovi clienti.</div>
+        <span class="svc-row__tag">Esame visivo</span>
+      </div>
+
+      <div class="svc-row reveal reveal-d1">
+        <div class="svc-row__name">Occhiali da Sole</div>
+        <div class="svc-row__desc">Le migliori collezioni del mercato, tra cui Ray-Ban e Meta. Filtri di altissima qualità, protezione UV certificata. Stile e protezione senza compromessi su ogni sfumatura di luce.</div>
+        <span class="svc-row__tag">Ray-Ban &middot; Meta</span>
+      </div>
+
+      <div class="svc-row reveal reveal-d2">
+        <div class="svc-row__name">Analisi Visiva Computerizzata</div>
+        <div class="svc-row__desc">Controllo della vista moderno, preciso e completamente non invasivo. Tecnologia diagnostica avanzata per una misurazione accurata, senza disagio per il paziente.</div>
+        <span class="svc-row__tag">Non invasivo</span>
+      </div>
+
+      <div class="svc-row reveal reveal-d3">
+        <div class="svc-row__name">Controllo dell'Udito</div>
+        <div class="svc-row__desc">Screening uditivo gratuito, rapido e non invasivo. Da oggi anche a domicilio — ti veniamo a trovare direttamente a casa tua, con collegamento in telemedicina con audioprotesisti e otorinolaringoiatri.</div>
+        <span class="svc-row__tag">Gratuito &middot; A domicilio</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section class="reviews" id="recensioni">
+  <div class="reviews__inner">
+    <div class="reviews__hd reveal">
+      <p class="lbl">Recensioni</p>
+      <h2 class="hdg-light">Quello che dicono i clienti</h2>
+    </div>
+
+    <div class="review-main reveal">
+      <p class="review-main__text">
+        Grande professionalità, gentilezza e competenza da parte del titolare. Vasta scelta di occhiali sia da vista che da sole. Ambiente confortevole e luminoso.
+      </p>
+      <div class="review-main__byline">
+        <span class="review-main__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="review-main__name">Arturo Pagliara &nbsp;—&nbsp; Google</span>
+      </div>
+    </div>
+
+    <div class="review-second reveal">
+      "Giuliano — una persona veramente brava e gentile. Sono anni che mi servono da lui. Prezzi buoni. Top."
+      <span class="review-second__by">Maria Angela Tav &nbsp;·&nbsp; Google &#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    </div>
+  </div>
+</section>
+
+<!-- ORARI & CONTATTI -->
+<section id="contatti">
+  <div class="contact-wrap">
+
+    <div class="reveal">
+      <p class="lbl">Orari di apertura</p>
+      <h2 class="contact-col__ttl">Quando trovarci</h2>
+      <table class="hours">
+        <tbody>
+          <tr><td>Lunedì</td>    <td>09:00 – 13:00, 16:30 – 20:00</td></tr>
+          <tr><td>Martedì</td>   <td>09:00 – 13:00, 16:30 – 20:00</td></tr>
+          <tr><td>Mercoledì</td> <td>09:00 – 13:00, 16:30 – 20:00</td></tr>
+          <tr><td>Giovedì</td>   <td>09:00 – 13:00, 16:30 – 20:00</td></tr>
+          <tr><td>Venerdì</td>   <td>09:00 – 13:00, 16:30 – 20:00</td></tr>
+          <tr><td>Sabato</td>    <td>09:00 – 13:00</td></tr>
+          <tr class="closed"><td>Domenica</td><td>Chiuso</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="reveal reveal-d2">
+      <p class="lbl">Dove siamo</p>
+      <h2 class="contact-col__ttl">Vieni a trovarci</h2>
+      <div class="cinfo">
+        <div class="ci">
+          <svg class="ci__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+          <div class="ci__text">
+            <strong>Via Vittime Civili, 40</strong>
+            71121 Foggia FG
+          </div>
+        </div>
+        <div class="ci">
+          <svg class="ci__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.1 2.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          <div class="ci__text">
+            <a href="tel:0881714001"><strong>0881 714001</strong></a>
+          </div>
+        </div>
+      </div>
+      <a href="https://maps.google.com/?q=Via+Vittime+Civili+40+Foggia" target="_blank" rel="noopener" class="btn-dark">
+        Apri in Google Maps
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer__in">
+    <div class="footer__logo">Ottica <span>Vedere</span></div>
+    <p class="footer__copy">&copy; 2026 Ottica Vedere. Tutti i diritti riservati.</p>
+    <div class="footer__addr">
+      Via Vittime Civili, 40 &mdash; 71121 Foggia<br>
+      <a href="tel:0881714001">0881 714001</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Nav scroll */
+  const nav = document.getElementById('js-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('is-scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* Hero mouse lens — CSS custom properties drive the spotlight */
+  const hero = document.getElementById('js-hero');
+  let heroRect = hero.getBoundingClientRect();
+  window.addEventListener('resize', () => { heroRect = hero.getBoundingClientRect(); }, { passive: true });
+
+  hero.addEventListener('mousemove', (e) => {
+    const x = ((e.clientX - heroRect.left) / heroRect.width  * 100).toFixed(1);
+    const y = ((e.clientY - heroRect.top)  / heroRect.height * 100).toFixed(1);
+    hero.style.setProperty('--lx', x + '%');
+    hero.style.setProperty('--ly', y + '%');
+  }, { passive: true });
+
+  /* Star-dust particles in hero */
+  const canvas = document.getElementById('js-stars');
+  function drawStars() {
+    const w = hero.offsetWidth;
+    const h = hero.offsetHeight;
+    canvas.width  = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    for (let i = 0; i < 90; i++) {
+      const x = Math.random() * w;
+      const y = Math.random() * h;
+      const r = Math.random() * 1.4 + 0.2;
+      const a = (Math.random() * 0.3 + 0.04).toFixed(2);
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(196,151,90,${a})`;
+      ctx.fill();
+    }
+  }
+  drawStars();
+  window.addEventListener('resize', drawStars, { passive: true });
+
+  /* Load: blur-to-focus reveal on hero elements */
+  function reveal() {
+    document.querySelectorAll('.blur-in').forEach(el => el.classList.add('is-in'));
+  }
+  if (document.readyState === 'complete') {
+    requestAnimationFrame(() => setTimeout(reveal, 80));
+  } else {
+    window.addEventListener('load', () => requestAnimationFrame(() => setTimeout(reveal, 80)));
+  }
+
+  /* Scroll reveal for sections */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('is-vis'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+})();
+</script>
+</body>
+</html>
