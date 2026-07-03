@@ -1,0 +1,9 @@
+.impeccable/hook.cache.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
